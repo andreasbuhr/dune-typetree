@@ -134,28 +134,28 @@ int main(int argc, char** argv)
   typedef Dune::TypeTree::TreeInfo<SVC2> TI;
 
   // test TreeInfo
-  dune_static_assert(TI::depth == 4 && TI::nodeCount == 14 && TI::leafCount == 10,
+  static_assert(TI::depth == 4 && TI::nodeCount == 14 && TI::leafCount == 10,
                      "TreeInfo yields wrong information");
 
   std::cout << "depth: " << TI::depth << std::endl
             << "nodes: " << TI::nodeCount << std::endl
             << "leafs: " << TI::leafCount << std::endl;
 
-  dune_static_assert((Dune::TypeTree::AccumulateValue<
+  static_assert((Dune::TypeTree::AccumulateValue<
                         SVC2,
                         NodeCountingFunctor,
                         Dune::TypeTree::plus<std::size_t>,
                         0>::result == TI::nodeCount),
                      "Error in AccumulateValue");
 
-  dune_static_assert((Dune::TypeTree::AccumulateValue<
+  static_assert((Dune::TypeTree::AccumulateValue<
                         SVC2,
                         LeafCountingFunctor,
                         Dune::TypeTree::plus<std::size_t>,
                         0>::result == TI::leafCount),
                      "Error in AccumulateValue");
 
-  dune_static_assert((Dune::TypeTree::AccumulateValue<
+  static_assert((Dune::TypeTree::AccumulateValue<
                         SVC2,
                         DepthFunctor,
                         Dune::TypeTree::max<std::size_t>,

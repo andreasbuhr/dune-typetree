@@ -7,7 +7,6 @@
 #include <cstddef>
 
 #include <dune/common/documentation.hh>
-#include <dune/common/static_assert.hh>
 #include <dune/common/typetraits.hh>
 
 #include <dune/typetree/fixedcapacitystack.hh>
@@ -174,23 +173,23 @@ namespace Dune {
              std::size_t i6 = noChildIndex, std::size_t i7 = noChildIndex,
              std::size_t i8 = noChildIndex, std::size_t i9 = noChildIndex>
     class TreePath {
-      dune_static_assert(i0 == noChildIndex ? i1 == noChildIndex : true,
+      static_assert(i0 == noChildIndex ? i1 == noChildIndex : true,
                          "Only trailing indices my be noChildIndex");
-      dune_static_assert(i1 == noChildIndex ? i2 == noChildIndex : true,
+      static_assert(i1 == noChildIndex ? i2 == noChildIndex : true,
                          "Only trailing indices my be noChildIndex");
-      dune_static_assert(i2 == noChildIndex ? i3 == noChildIndex : true,
+      static_assert(i2 == noChildIndex ? i3 == noChildIndex : true,
                          "Only trailing indices my be noChildIndex");
-      dune_static_assert(i3 == noChildIndex ? i4 == noChildIndex : true,
+      static_assert(i3 == noChildIndex ? i4 == noChildIndex : true,
                          "Only trailing indices my be noChildIndex");
-      dune_static_assert(i4 == noChildIndex ? i5 == noChildIndex : true,
+      static_assert(i4 == noChildIndex ? i5 == noChildIndex : true,
                          "Only trailing indices my be noChildIndex");
-      dune_static_assert(i5 == noChildIndex ? i6 == noChildIndex : true,
+      static_assert(i5 == noChildIndex ? i6 == noChildIndex : true,
                          "Only trailing indices my be noChildIndex");
-      dune_static_assert(i6 == noChildIndex ? i7 == noChildIndex : true,
+      static_assert(i6 == noChildIndex ? i7 == noChildIndex : true,
                          "Only trailing indices my be noChildIndex");
-      dune_static_assert(i7 == noChildIndex ? i8 == noChildIndex : true,
+      static_assert(i7 == noChildIndex ? i8 == noChildIndex : true,
                          "Only trailing indices my be noChildIndex");
-      dune_static_assert(i8 == noChildIndex ? i9 == noChildIndex : true,
+      static_assert(i8 == noChildIndex ? i9 == noChildIndex : true,
                          "Only trailing indices my be noChildIndex");
 
       typedef TreePath ViewType;
@@ -207,7 +206,7 @@ namespace Dune {
     //! remove first element of a tree path
     template<class TP>
     class TreePathPopFront {
-      dune_static_assert(AlwaysTrue<TP>::value,
+      static_assert(AlwaysTrue<TP>::value,
                          "TreePathPopFront works on TreePaths only");
     public:
       //! The tree path with the first element removed
@@ -220,7 +219,7 @@ namespace Dune {
              std::size_t i8, std::size_t i9>
     struct TreePathPopFront<TreePath<i0, i1, i2, i3, i4, i5, i6, i7, i8, i9> >
     {
-      dune_static_assert(i0 != noChildIndex,
+      static_assert(i0 != noChildIndex,
                          "Can't pop first element from an empty TreePath");
       typedef TreePath<i1, i2, i3, i4, i5, i6, i7, i8, i9> type;
     };
@@ -229,7 +228,7 @@ namespace Dune {
     //! get first element of a tree path
     template<class TP>
     class TreePathFront {
-      dune_static_assert(AlwaysTrue<TP>::value,
+      static_assert(AlwaysTrue<TP>::value,
                          "TreePathPopFront works on TreePaths only");
     public:
       //! value of the first element
@@ -243,7 +242,7 @@ namespace Dune {
     class TreePathFront<TreePath<i0, i1, i2, i3, i4, i5, i6, i7, i8, i9> > :
       public integral_constant<std::size_t, i0>
     {
-      dune_static_assert(i0 != noChildIndex,
+      static_assert(i0 != noChildIndex,
                          "Can't take first element of an empty TreePath");
     };
 #endif // DOXYGEN
@@ -251,7 +250,7 @@ namespace Dune {
     //! prepend one element to a tree path
     template<class TP, std::size_t i>
     class TreePathPushFront {
-      dune_static_assert(AlwaysTrue<TP>::value,
+      static_assert(AlwaysTrue<TP>::value,
                          "TreePathPushFront works on TreePaths only");
     public:
       //! The tree path with i prepended
@@ -265,7 +264,7 @@ namespace Dune {
     struct TreePathPushFront<TreePath<i0, i1, i2, i3, i4, i5, i6, i7, i8, i9>,
                              i>
     {
-      dune_static_assert(i0 ? false : false, "TreePathPushFront: exceeded "
+      static_assert(i0 ? false : false, "TreePathPushFront: exceeded "
                          "implementation limit on TreePath size");
     };
     template<std::size_t i0, std::size_t i1, std::size_t i2, std::size_t i3,
